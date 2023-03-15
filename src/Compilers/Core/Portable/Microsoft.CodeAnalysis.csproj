@@ -50,6 +50,7 @@
     <InternalsVisibleTo Include="Microsoft.CodeAnalysis.VisualBasic.ExpressionEvaluator.ExpressionCompiler" />
     <InternalsVisibleTo Include="csc" />
     <InternalsVisibleTo Include="csi" />
+	<InternalsVisibleTo Include="Zephyr" />
     <InternalsVisibleTo Include="BuildValidator" />
     <InternalsVisibleTo Include="Microsoft.CodeAnalysis.Rebuild" />
     <InternalsVisibleTo Include="Microsoft.CodeAnalysis.Scripting" />

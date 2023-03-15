@@ -6,10 +6,8 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
     <SharedGUID>b021ccbc-b2af-4560-af28-ed055f0ed696</SharedGUID>
-    <RootNamespace>Microsoft.CodeAnalysis.CSharp.CommandLine</RootNamespace>
     <Prefer32Bit>false</Prefer32Bit>
     <LargeAddressAware>true</LargeAddressAware>
-    <StartupObject>Microsoft.CodeAnalysis.CSharp.CommandLine.Program</StartupObject>
     <ServerGarbageCollection>true</ServerGarbageCollection>
     <GenerateMicrosoftCodeAnalysisCommitHashAttribute>true</GenerateMicrosoftCodeAnalysisCommitHashAttribute>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
@@ -33,6 +31,7 @@
     <None Include="$(MSBuildThisFileDirectory)App.config" Condition="'$(TargetFramework)' == 'net472'" />
 
     <InternalsVisibleTo Include="Microsoft.CodeAnalysis.CSharp.CommandLine.UnitTests" />
+	<InternalsVisibleTo Include="Zephyr" />
     
     <ProjectReference Include="$(MSBuildThisFileDirectory)..\..\Core\Portable\Microsoft.CodeAnalysis.csproj" />
     <ProjectReference Include="$(MSBuildThisFileDirectory)..\Portable\Microsoft.CodeAnalysis.CSharp.csproj" />

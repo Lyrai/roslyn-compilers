@@ -263,6 +263,10 @@ namespace Microsoft.Cci
             {
                 throw new PeWritingException(e);
             }
+            finally
+            {
+                peStream.Close();
+            }
 
             return true;
         }
