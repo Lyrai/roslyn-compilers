@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Immutable;
+using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
 using Microsoft.CodeAnalysis.CSharp.Symbols;
@@ -159,10 +160,12 @@ namespace Microsoft.CodeAnalysis.CSharp
         }
 #endif
 
+#if !DEBUG
         internal override bool ShouldAssertExpectedMessageArgumentsLength(int errorCode)
         {
             return false;
         }
+#endif
 
         public override int ERR_FailedToCreateTempFile => (int)ErrorCode.ERR_CantMakeTempFile;
         public override int ERR_MultipleAnalyzerConfigsInSameDir => (int)ErrorCode.ERR_MultipleAnalyzerConfigsInSameDir;
