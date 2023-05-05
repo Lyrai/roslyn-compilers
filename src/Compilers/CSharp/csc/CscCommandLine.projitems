@@ -40,5 +40,5 @@
   <ItemGroup Condition="'$(DefaultLanguageSourceExtension)' != '' AND '$(BuildingInsideVisualStudio)' != 'true'">
     <ExpectedCompile Include="$(MSBuildThisFileDirectory)**\*$(DefaultLanguageSourceExtension)" />
   </ItemGroup>
-  <Import Project="$(RepositoryEngineeringDir)targets\DiaSymReaderNative.targets" />
+  <!-- <Import Project="$(RepositoryEngineeringDir)targets\DiaSymReaderNative.targets" /> -->
 </Project>
