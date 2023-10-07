@@ -12,7 +12,7 @@ namespace Microsoft.CodeAnalysis
     /// <summary>
     /// A program location in source code.
     /// </summary>
-    internal sealed class SourceLocation : Location, IEquatable<SourceLocation?>
+    internal class SourceLocation : Location, IEquatable<SourceLocation?>
     {
         private readonly SyntaxTree _syntaxTree;
         private readonly TextSpan _span;
@@ -130,4 +130,40 @@ namespace Microsoft.CodeAnalysis
             return base.GetDebuggerDisplay() + "\"" + _syntaxTree.ToString().Substring(_span.Start, _span.Length) + "\"";
         }
     }
+
+
+    class ZephyrSourceLocation : SourceLocation
+    {
+        public int TreeOrdinal;
+        public int Position;
+        public ZephyrSourceLocation(int treeOrdinal, int position): base(null, new TextSpan())
+        {
+            TreeOrdinal = treeOrdinal;
+            Position = position;
+        }
+        public ZephyrSourceLocation(SyntaxTree syntaxTree, TextSpan span) : base(syntaxTree, span)
+        {
+        }
+
+        public ZephyrSourceLocation(SyntaxNode node) : base(node)
+        {
+        }
+
+        public ZephyrSourceLocation(in SyntaxToken token) : base(in token)
+        {
+        }
+
+        public ZephyrSourceLocation(in SyntaxNodeOrToken nodeOrToken) : base(in nodeOrToken)
+        {
+        }
+
+        public ZephyrSourceLocation(in SyntaxTrivia trivia) : base(in trivia)
+        {
+        }
+
+        public ZephyrSourceLocation(SyntaxReference syntaxRef) : base(syntaxRef)
+        {
+        }
+    }
+
 }

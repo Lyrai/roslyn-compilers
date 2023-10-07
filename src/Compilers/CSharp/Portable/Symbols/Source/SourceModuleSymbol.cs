@@ -221,6 +221,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             return _state.HasComplete(part);
         }
 
+        internal void SetGlobalNamespace(SourceNamespaceSymbol symbol)
+        {
+            Interlocked.Exchange(ref _globalNamespace, symbol);
+        }
+
         internal override void ForceComplete(SourceLocation locationOpt, CancellationToken cancellationToken)
         {
             while (true)

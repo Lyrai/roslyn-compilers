@@ -1020,7 +1020,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         ///      stored with other initialized fields and properties from the same syntax tree with
         ///      the same static-ness.
         /// </summary>
-        protected sealed class MembersAndInitializers
+        internal sealed class MembersAndInitializers
         {
             internal readonly SynthesizedPrimaryConstructor? PrimaryConstructor;
             internal readonly ImmutableArray<Symbol> NonTypeMembers;
@@ -1547,7 +1547,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         //       we often need to get members just to do a lookup.
         //       All additional checks and diagnostics may be not
         //       needed yet or at all.
-        protected MembersAndInitializers GetMembersAndInitializers()
+        internal MembersAndInitializers GetMembersAndInitializers()
         {
             var membersAndInitializers = _lazyMembersAndInitializers;
             if (membersAndInitializers != null)
@@ -1653,6 +1653,19 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             }
 
             return GetMembersByNameSlow();
+        }
+
+        internal void SetMembersDictionary(Dictionary<string, ImmutableArray<Symbol>> dictionary)
+        {
+            GetMembersByNameSlow();
+            
+            foreach(var (k, v) in _lazyMembersDictionary)
+            { 
+                dictionary[k] = v;
+            }
+            
+            Interlocked.Exchange(ref _lazyMembersDictionary, dictionary);
+            //state.NotePartComplete(CompletionPart.Members);
         }
 
         private Dictionary<string, ImmutableArray<Symbol>> GetMembersByNameSlow()
@@ -3045,7 +3058,13 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             }
         }
 
-        private MembersAndInitializers? BuildMembersAndInitializers(BindingDiagnosticBag diagnostics)
+        internal void ResetMembersAndInitializers()
+        {
+            _lazyDeclaredMembersAndInitializers = DeclaredMembersAndInitializers.UninitializedSentinel;
+            _lazyMembersAndInitializers = null;
+        }
+
+        internal MembersAndInitializers? BuildMembersAndInitializers(BindingDiagnosticBag diagnostics)
         {
             var declaredMembersAndInitializers = getDeclaredMembersAndInitializers();
             if (declaredMembersAndInitializers is null)
@@ -3362,13 +3381,28 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                     continue;
                 }
 
-                if (_lazyMembersAndInitializers != null)
+                /*if (_lazyMembersAndInitializers != null)
                 {
                     // membersAndInitializers is already computed. no point to continue.
                     return;
-                }
+                }*/
 
-                var syntax = decl.SyntaxReference.GetSyntax();
+                var syntax = decl.SyntaxReference?.GetSyntax();
+                if (syntax is null)
+                {
+                    if(_lazyMembersDictionary is not null)
+                    {
+                        foreach (var (_, symbols) in _lazyMembersDictionary)
+                        {
+                            foreach (var symbol in symbols)
+                            {
+                                builder.NonTypeMembers.Add(symbol);
+                            }
+                        }
+                    }
+                    
+                    return;
+                }
 
                 switch (syntax.Kind())
                 {

@@ -145,7 +145,16 @@ namespace Microsoft.CodeAnalysis.CSharp
 
         public LexicalSortKey GetLexicalSortKey(CSharpCompilation compilation)
         {
-            LexicalSortKey sortKey = new LexicalSortKey(Declarations[0].NameLocation, compilation);
+            LexicalSortKey sortKey;
+            if (Declarations[0].NameLocation is ZephyrSourceLocation location)
+            {
+                sortKey = new LexicalSortKey(location.TreeOrdinal, location.Position);
+            }
+            else
+            {
+                sortKey = new LexicalSortKey(Declarations[0].NameLocation, compilation);
+            }
+            
             for (var i = 1; i < Declarations.Length; i++)
             {
                 sortKey = LexicalSortKey.First(sortKey, new LexicalSortKey(Declarations[i].NameLocation, compilation));
