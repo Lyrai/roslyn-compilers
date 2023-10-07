@@ -12,7 +12,7 @@ namespace Microsoft.CodeAnalysis
     /// <summary>
     /// A program location in source code.
     /// </summary>
-    internal sealed class SourceLocation : Location, IEquatable<SourceLocation?>
+    internal class SourceLocation : Location, IEquatable<SourceLocation?>
     {
         private readonly SyntaxTree _syntaxTree;
         private readonly TextSpan _span;
@@ -130,4 +130,40 @@ namespace Microsoft.CodeAnalysis
             return base.GetDebuggerDisplay() + "\"" + _syntaxTree.ToString().Substring(_span.Start, _span.Length) + "\"";
         }
     }
+
+
+    class LocationTest : SourceLocation
+    {
+        public int TreeOrdinal;
+        public int Position;
+        public LocationTest(int treeOrdinal, int position): base(null, new TextSpan())
+        {
+            TreeOrdinal = treeOrdinal;
+            Position = position;
+        }
+        public LocationTest(SyntaxTree syntaxTree, TextSpan span) : base(syntaxTree, span)
+        {
+        }
+
+        public LocationTest(SyntaxNode node) : base(node)
+        {
+        }
+
+        public LocationTest(in SyntaxToken token) : base(in token)
+        {
+        }
+
+        public LocationTest(in SyntaxNodeOrToken nodeOrToken) : base(in nodeOrToken)
+        {
+        }
+
+        public LocationTest(in SyntaxTrivia trivia) : base(in trivia)
+        {
+        }
+
+        public LocationTest(SyntaxReference syntaxRef) : base(syntaxRef)
+        {
+        }
+    }
+
 }

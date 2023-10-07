@@ -51,7 +51,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         public static readonly LexicalSortKey SynthesizedCtor = new LexicalSortKey() { _treeOrdinal = int.MaxValue, _position = int.MaxValue - 1 };
         public static readonly LexicalSortKey SynthesizedCCtor = new LexicalSortKey() { _treeOrdinal = int.MaxValue, _position = int.MaxValue };
 
-        private LexicalSortKey(int treeOrdinal, int position)
+        public LexicalSortKey(int treeOrdinal, int position)
         {
             Debug.Assert(position >= 0);
             Debug.Assert(treeOrdinal >= 0);
