@@ -132,6 +132,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
             moduleBuilder.Add(new SourceModuleSymbol(this, compilation.Declarations, moduleName));
 
+            
             var importOptions = (compilation.Options.MetadataImportOptions == MetadataImportOptions.All) ?
                 MetadataImportOptions.All : MetadataImportOptions.Internal;
 
