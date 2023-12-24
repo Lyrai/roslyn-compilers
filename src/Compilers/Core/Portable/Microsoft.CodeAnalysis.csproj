@@ -18,6 +18,7 @@
       A shared package used by the Microsoft .NET Compiler Platform ("Roslyn").
       Do not install this package manually, it will be added as a prerequisite by other packages that require it.
     </PackageDescription>
+    <OutputPath>..\bin\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <None Include="Operations\OperationInterfaces.xml" />
