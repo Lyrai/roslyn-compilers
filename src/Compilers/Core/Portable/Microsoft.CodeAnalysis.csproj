@@ -19,6 +19,7 @@
       Do not install this package manually, it will be added as a prerequisite by other packages that require it.
     </PackageDescription>
     <SignAssembly>false</SignAssembly>
+    <OutputPath>..\bin\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <None Include="Operations\OperationInterfaces.xml" />

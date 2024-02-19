@@ -161,10 +161,10 @@ namespace Microsoft.CodeAnalysis.CSharp
 #endif
 
 #if !DEBUG
-        internal override bool ShouldAssertExpectedMessageArgumentsLength(int errorCode)
+        /*internal override bool ShouldAssertExpectedMessageArgumentsLength(int errorCode)
         {
             return false;
-        }
+        }*/
 #endif
 
         public override int ERR_FailedToCreateTempFile => (int)ErrorCode.ERR_CantMakeTempFile;
