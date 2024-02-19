@@ -18,6 +18,7 @@
       A shared package used by the Microsoft .NET Compiler Platform ("Roslyn").
       Do not install this package manually, it will be added as a prerequisite by other packages that require it.
     </PackageDescription>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <None Include="Operations\OperationInterfaces.xml" />
@@ -50,7 +51,8 @@
     <InternalsVisibleTo Include="Microsoft.CodeAnalysis.VisualBasic.ExpressionEvaluator.ExpressionCompiler" />
     <InternalsVisibleTo Include="csc" />
     <InternalsVisibleTo Include="csi" />
-	<InternalsVisibleTo Include="Zephyr" />
+	  <InternalsVisibleTo Include="Zephyr" />
+    <InternalsVisibleTo Include="NETGenerator" />
     <InternalsVisibleTo Include="BuildValidator" />
     <InternalsVisibleTo Include="Microsoft.CodeAnalysis.Rebuild" />
     <InternalsVisibleTo Include="Microsoft.CodeAnalysis.Scripting" />
