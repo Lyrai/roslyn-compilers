@@ -58,6 +58,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             }
         }
 
+        internal void SetBaseType(NamedTypeSymbol type)
+        {
+            _lazyBaseType = type;
+        }
+
         /// <summary>
         /// Gets the set of interfaces that this type directly implements. This set does not include
         /// interfaces that are base interfaces of directly implemented interfaces.

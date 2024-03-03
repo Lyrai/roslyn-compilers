@@ -132,36 +132,36 @@ namespace Microsoft.CodeAnalysis
     }
 
 
-    class ZephyrSourceLocation : SourceLocation
+    class RoslynSourceLocation : SourceLocation
     {
         public int TreeOrdinal;
         public int Position;
-        public ZephyrSourceLocation(int treeOrdinal, int position): base(null, new TextSpan())
+        public RoslynSourceLocation(int treeOrdinal, int position): base(null, new TextSpan())
         {
             TreeOrdinal = treeOrdinal;
             Position = position;
         }
-        public ZephyrSourceLocation(SyntaxTree syntaxTree, TextSpan span) : base(syntaxTree, span)
+        public RoslynSourceLocation(SyntaxTree syntaxTree, TextSpan span) : base(syntaxTree, span)
         {
         }
 
-        public ZephyrSourceLocation(SyntaxNode node) : base(node)
+        public RoslynSourceLocation(SyntaxNode node) : base(node)
         {
         }
 
-        public ZephyrSourceLocation(in SyntaxToken token) : base(in token)
+        public RoslynSourceLocation(in SyntaxToken token) : base(in token)
         {
         }
 
-        public ZephyrSourceLocation(in SyntaxNodeOrToken nodeOrToken) : base(in nodeOrToken)
+        public RoslynSourceLocation(in SyntaxNodeOrToken nodeOrToken) : base(in nodeOrToken)
         {
         }
 
-        public ZephyrSourceLocation(in SyntaxTrivia trivia) : base(in trivia)
+        public RoslynSourceLocation(in SyntaxTrivia trivia) : base(in trivia)
         {
         }
 
-        public ZephyrSourceLocation(SyntaxReference syntaxRef) : base(syntaxRef)
+        public RoslynSourceLocation(SyntaxReference syntaxRef) : base(syntaxRef)
         {
         }
     }

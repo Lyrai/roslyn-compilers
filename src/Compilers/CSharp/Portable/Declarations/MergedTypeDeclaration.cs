@@ -146,7 +146,7 @@ namespace Microsoft.CodeAnalysis.CSharp
         public LexicalSortKey GetLexicalSortKey(CSharpCompilation compilation)
         {
             LexicalSortKey sortKey;
-            if (Declarations[0].NameLocation is ZephyrSourceLocation location)
+            if (Declarations[0].NameLocation is RoslynSourceLocation location)
             {
                 sortKey = new LexicalSortKey(location.TreeOrdinal, location.Position);
             }
