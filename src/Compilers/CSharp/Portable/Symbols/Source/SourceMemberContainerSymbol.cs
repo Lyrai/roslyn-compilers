@@ -1658,12 +1658,12 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         internal void SetMembersDictionary(Dictionary<string, ImmutableArray<Symbol>> dictionary)
         {
             GetMembersByNameSlow();
-            
-            foreach(var (k, v) in _lazyMembersDictionary)
-            { 
+
+            /*foreach (var (k, v) in _lazyMembersDictionary)
+            {
                 dictionary[k] = v;
-            }
-            
+            }*/
+
             Interlocked.Exchange(ref _lazyMembersDictionary, dictionary);
             //state.NotePartComplete(CompletionPart.Members);
         }

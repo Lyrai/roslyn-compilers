@@ -85,5 +85,8 @@
     <InternalsVisibleTo Include="CompilerBenchmarks" />
     <InternalsVisibleTo Include="Microsoft.Build.Tasks.CodeAnalysis.UnitTests" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Remove="RichCodeNav.EnvVarDump" />
+  </ItemGroup>
   <Import Project="..\CSharpAnalyzerDriver\CSharpAnalyzerDriver.projitems" Label="Shared" />
 </Project>

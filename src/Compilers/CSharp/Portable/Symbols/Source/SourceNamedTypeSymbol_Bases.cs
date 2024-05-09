@@ -63,6 +63,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             _lazyBaseType = type;
         }
 
+        internal void SetInterfaces(ImmutableArray<NamedTypeSymbol> interfaces)
+        {
+            _lazyInterfaces = interfaces;
+        }
+
         /// <summary>
         /// Gets the set of interfaces that this type directly implements. This set does not include
         /// interfaces that are base interfaces of directly implemented interfaces.

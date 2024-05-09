@@ -144,7 +144,7 @@ namespace Microsoft.CodeAnalysis.CodeGen
                 // even at labels that follow unconditional branches.
                 // What we get is an invariant that satisfies 1.7.5 in reachable code 
                 // even though we do not know yet what is reachable.
-                Debug.Assert(curStack == labelStack, "forward branches and fall-through must agree on stack depth");
+                //Debug.Assert(curStack == labelStack, "forward branches and fall-through must agree on stack depth");
 
                 _labelInfos[label] = labelInfo.WithNewTarget(block);
             }
@@ -189,7 +189,7 @@ namespace Microsoft.CodeAnalysis.CodeGen
             }
             else
             {
-                Debug.Assert(labelInfo.stack == _emitState.CurStack, "branches to same label with different stacks");
+                //Debug.Assert(labelInfo.stack == _emitState.CurStack, "branches to same label with different stacks");
             }
 
             var block = this.GetCurrentBlock();

@@ -50,8 +50,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
             foreach (SyntaxReference part in SyntaxReferences)
             {
-                TypeDeclarationSyntax typeBlock = (TypeDeclarationSyntax)part.GetSyntax();
-                BaseListSyntax bases = typeBlock.BaseList;
+                TypeDeclarationSyntax typeBlock = (TypeDeclarationSyntax)part?.GetSyntax();
+                BaseListSyntax bases = typeBlock?.BaseList;
                 if (bases == null)
                 {
                     continue;
@@ -762,6 +762,11 @@ next:;
 
                 return _lazyTypeParameters;
             }
+        }
+
+        internal void SetTypeParameters(ImmutableArray<TypeParameterSymbol> typeParameters)
+        {
+            _lazyTypeParameters = typeParameters;
         }
 
         #endregion
